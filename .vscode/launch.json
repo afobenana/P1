@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/anaafonso1403/Desktop/2ocuatri/Computacional/P1",
+      "program": "/Users/anaafonso1403/Desktop/2ocuatri/Computacional/P1/build/Debug/outDebug"
+    }
+  ]
+}
