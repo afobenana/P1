@@ -86,6 +86,14 @@ for frame_data_str in data_str.split("\n\n"):
     # Inicializa la lista con la posición de cada planeta
     frame_data = list()
 
+
+
+    # Lista de colores para cada planeta
+    planet_colors = ['yellow', 'green', 'pink', 'blue', 'red', 'purple', 'orange', 'gray', 'lightblue']  # Puedes ajustar los colores según tus preferencias
+
+
+
+
     # Itera sobre las líneas del bloque
     # (cada línea da la posición de un planta)
     for planet_pos_str in frame_data_str.split("\n"):
@@ -126,15 +134,18 @@ else:
                 "El número de radios especificados no coincide con el número "
                 "de planetas")
 
+
+
+
 # Representa el primer fotograma
 # Pinta un punto en la posición de cada paneta y guarda el objeto asociado
 # al punto en una lista
-planet_points = list()
-planet_trails = list()
-for planet_pos, radius in zip(frames_data[0], planet_radius):
+    planet_points = list()
+    planet_trails = list()
+for planet_pos, radius, color in zip(frames_data[0], planet_radius, planet_colors):
     x, y = planet_pos
     #planet_point, = ax.plot(x, y, "o", markersize=10)
-    planet_point = Circle((x, y), radius)
+    planet_point = Circle((x, y), radius, color=color)
     ax.add_artist(planet_point)
     planet_points.append(planet_point)
 
