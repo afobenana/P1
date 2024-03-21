@@ -23,19 +23,25 @@ int main() {
     // Creo y abro los ficheros que voy a usar
     FILE *input;
     FILE *output;
+    FILE *output2;
 
     input = fopen("ValoresIniciales.txt", "r");
     output = fopen("resultados.txt", "w");
+    output2= fopen ("Energias.txt", "w");
 
     // Defino mis variables (w es un vector auxiliar)
-    double x[9], y[9], vx[9], vy[9], ax[9], ay[9], wx[9], wy[9], m[9];
-    double t = 0, h = 0.2; // Inicializo t y defino el paso h
+    double x[9], y[9], vx[9], vy[9], ax[9], ay[9], wx[9], wy[9], m[9], E[9], Ec[9], Ep[9];
+    double t = 0, h = 0.1; // Inicializo t y defino el paso h
     int i;
 
     // Inicializo mis vectores con los valores iniciales correspondientes al sol y a cada planeta
     for(i=0; i<9; i++){
         fscanf(input, "%lf\t%lf\t%lf\t%lf\t%lf",&x[i],&y[i],&vx[i],&vy[i],&m[i]);
+
+    //Incluyo la situacion inicial en los resultados para que empiecen desde el mismo lugar
+        fprintf(output, "%lf,%lf\n", x[i], y[i]);
     }
+     fprintf(output, "\n");
 
     //Calculo la aceleracion inicial
     aceleracion(m,x,y,ax,ay);
@@ -61,7 +67,16 @@ int main() {
             y[i] = y[i] + h * wy[i] + h * h / 2. * ay[i];
             fprintf(output, "%lf,%lf\n", x[i], y[i]);
         }
+        for (i = 1;i<9; i++) {
+            // Energía de cada planeta
+            Ec[i]=0,5*m[i]*(pow(vx[i],2.)+pow(vy[i],2.));
+            Ep[i]=-1.*m[0]*m[i]/(1.*pow((pow(x[i],2.)+pow(y[i],2.)),0.5));
+            E[i]=Ec[i]+Ep[i];
+            fprintf(output2, "%lf,%lf\n", t, E[i]);
+        }
         fprintf(output, "\n");
+        fprintf(output2, "\n");
+
         //Calculo la aceleracion en t+h
             aceleracion(m,x,y,ax,ay);
         // Paso al siguiente momento
@@ -83,8 +98,8 @@ void aceleracion(double m[9],double x[9],double y[9],double ax[9],double ay[9]){
         ay[i]=0.;
         for(j=0; j<9; j++){
             if(j!=i){
-                ax[i]=ax[i]+(-m[j]*(x[i]-x[j]))/(1.*pow((pow((x[i]-x[j]),2.)+pow((y[i]-y[j]),2.)),3/2.));
-                ay[i]=ay[i]+(-m[j]*(y[i]-y[j]))/(1.*pow((pow((x[i]-x[j]),2.)+pow((y[i]-y[j]),2.)),3/2.));
+                ax[i]=ax[i]+((-m[j]*(x[i]-x[j]))/(1.*pow((pow((x[i]-x[j]),2.)+pow((y[i]-y[j]),2.)),1.5)));
+                ay[i]=ay[i]+((-m[j]*(y[i]-y[j]))/(1.*pow((pow((x[i]-x[j]),2.)+pow((y[i]-y[j]),2.)),1.5)));
             }
             
         }

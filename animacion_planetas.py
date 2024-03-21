@@ -51,12 +51,12 @@ file_in = "resultados.txt" # Nombre del fichero de datos
 file_out = "planetas" # Nombre del fichero de salida (sin extensión)
 
 # Límites de los ejes X e Y
-x_min = -30
-x_max = 30
-y_min = -30 
-y_max = 30
+x_min = -31
+x_max = 31
+y_min = -31 
+y_max = 31
 
-interval = 100 # Tiempo entre fotogramas en milisegundos
+interval = 1 # Tiempo entre fotogramas en milisegundos
 show_trail = True # Muestra la "estela" del planeta
 trail_width = 0.3 # Ancho de la estela
 save_to_file = False # False: muestra la animación por pantalla,
@@ -117,8 +117,36 @@ nplanets = len(frames_data[0])
 # Crea los objetos figure y axis
 fig, ax = plt.subplots()
 
+# Define el color de fondo
+ax.set_facecolor('black')  # Establece el color de fondo como negro
+
+# Define el color de fondo de la figura
+fig.patch.set_facecolor('black')  # Establece el color de fondo de la figura como negro
+
+
+# Define el color de los ejes
+ax.spines['bottom'].set_color('white')  # Eje X
+ax.spines['top'].set_color('white')
+ax.spines['left'].set_color('white')    # Eje Y
+ax.spines['right'].set_color('white')
+
+ax.xaxis.label.set_color('white')  # Color del texto del eje X
+ax.yaxis.label.set_color('white')  # Color del texto del eje Y
+
+ax.tick_params(axis='x', colors='white')  # Color de las marcas del eje X
+ax.tick_params(axis='y', colors='white')  # Color de las marcas del eje Y
+
+
+# Agrega etiquetas a los ejes con unidades astronómicas (UA)
+ax.set_xlabel('[UA]', color='white')  # Etiqueta del eje X
+ax.set_ylabel('[UA]', color='white')  # Etiqueta del eje Y
+
+
+
+
+
 # Define el rango de los ejes
-ax.axis("equal")  # Misma escala para ejes X e Y
+#ax.axis("equal")  # Misma escala para ejes X e Y
 ax.set_xlim(x_min, x_max)
 ax.set_ylim(y_min, y_max)
 
@@ -133,6 +161,7 @@ else:
         raise ValueError(
                 "El número de radios especificados no coincide con el número "
                 "de planetas")
+
 
 
 
@@ -155,6 +184,10 @@ for planet_pos, radius, color in zip(frames_data[0], planet_radius, planet_color
                 x, y, "-", linewidth=trail_width,
                 color=planet_points[-1].get_facecolor())
         planet_trails.append(planet_trail)
+
+
+
+        
  
 # Función que actualiza la posición de los planetas en la animación 
 def update(j_frame, frames_data, planet_points, planet_trails, show_trail):

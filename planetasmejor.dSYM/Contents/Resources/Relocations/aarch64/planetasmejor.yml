@@ -2,7 +2,7 @@
 triple:          'arm64-apple-darwin'
 binary-path:     '/Users/anaafonso1403/Desktop/2ocuatri/Computacional/P1/planetasmejor'
 relocations:
-  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x10000396C, symSize: 0x334 }
-  - { offsetInCU: 0x103B, offset: 0x103B, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x10000396C, symSize: 0x334 }
-  - { offsetInCU: 0x1125, offset: 0x1125, size: 0x8, addend: 0x0, symName: __Z11aceleracionPdS_S_S_S_, symObjAddr: 0x334, symBinAddr: 0x100003CA0, symSize: 0x268 }
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x1000037B8, symSize: 0x4D0 }
+  - { offsetInCU: 0x103B, offset: 0x103B, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x1000037B8, symSize: 0x4D0 }
+  - { offsetInCU: 0x1163, offset: 0x1163, size: 0x8, addend: 0x0, symName: __Z11aceleracionPdS_S_S_S_, symObjAddr: 0x4D0, symBinAddr: 0x100003C88, symSize: 0x268 }
 ...
